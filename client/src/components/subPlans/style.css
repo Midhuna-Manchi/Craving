@@ -1,0 +1,116 @@
+.row {
+  display: flex;
+    }
+
+main{
+  overflow: auto;
+  flex:65%;
+  padding :10px;
+  background-color: #ffffff;
+    }
+
+.plansBox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weeklyBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 30%;
+  margin: 5%;
+  margin-top: 0;
+}
+
+.monthlyBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 30%;
+    margin: 5%;
+    margin-top: 0;
+}
+
+.plantitle{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin: 5%;
+  font-size: 175%;
+}
+
+.subsPlanblock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3%;
+  justify-content: center;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 15px;
+  background-color: WhiteSmoke;
+}
+
+.subsPlanDescBlock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 65%;
+  margin: 3%;
+  justify-content: center;
+}
+
+.subsPlanPriceBlock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 25%;
+  justify-content: center;
+}
+
+.planName{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 125%;
+  color: gray;
+  font-weight: bold;
+}
+
+.planDesc{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-size: 75%;
+  color: gray;
+  font-weight: bold;
+  align-items:flex-start;
+}
+
+.planPrice{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: bold;
+  margin: 1%;
+  font-size: 150%;
+  align-content: center;
+  color: gray;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    }
+  }

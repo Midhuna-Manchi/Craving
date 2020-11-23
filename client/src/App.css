@@ -1,0 +1,23 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+a{
+  color:#3498DB;
+}
+
+
+a:hover{
+  color:#E00B05;
+}
+
+a:active{
+  color:#E00B05;
+}

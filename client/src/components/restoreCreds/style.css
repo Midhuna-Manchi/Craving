@@ -1,0 +1,74 @@
+.validationMessage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: small;
+    text-decoration: none;
+	  align-items: center;
+    color:red;
+    margin-top: 1px;
+  }
+.userMessage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 1px;
+}
+.restoreCreds_panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 1px;
+}
+.floating_central_block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-decoration: none;
+  justify-content: center;
+  margin-top: 1px;
+}
+.restoreInputs {
+	display: flex;
+  flex-direction: column;
+	flex-wrap: wrap;
+	width: 80%;
+	align-items: left;
+}
+.outermost {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	  justify-content: center;
+	  padding:20px;
+	  padding-right: 30px;
+  }
+.title {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+  	  justify-content: center;
+}
+.statusMessage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: small;
+  text-decoration: none;
+  align-items: center;
+  color:blue;
+  margin-top: 1px;
+}
+.loginLink {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: small;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 1px;
+}

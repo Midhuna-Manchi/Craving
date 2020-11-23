@@ -1,0 +1,10 @@
+.validationMessage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: small;
+    text-decoration: none;
+	  align-items: center;
+    color:red;
+    margin-top: 1px;
+  }

@@ -1,0 +1,99 @@
+.row {
+  display: flex;
+    }
+
+main{
+  overflow: auto;
+  flex:65%;
+  padding :10px;
+  background-color: #ffffff;
+    }
+
+.error-message-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.error-message {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: normal;
+}
+
+.imageicon{
+  width:40%;
+  height: 40%;
+  display: flex;
+}
+
+.posttitle{
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  font-weight: normal;
+  font-size: 70%;
+  margin-top: 5%;
+}
+
+.postedby{
+  display: block;
+  font-size: 14px;
+  text-align:right;
+  font-style: italic;
+  font-weight:400;
+  color:#707B7C;
+  margin-top: 1%;
+}
+
+.firstblock{
+  height: 40%;
+  width: 18%;
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.orderButton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: black;
+  border-radius: 50%;
+  margin-top:20%;
+}
+
+.item_orders {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-top: 3%;
+  justify-content: center;
+}
+
+.quantity {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 40%;
+  justify-content: center;
+}
+
+
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    }
+  }

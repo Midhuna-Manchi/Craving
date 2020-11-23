@@ -1,0 +1,14 @@
+footer{
+  padding: 20px;
+  text-align: center;
+  background: #050505;
+  color:#E00B05;
+  
+}
+
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    }
+  }

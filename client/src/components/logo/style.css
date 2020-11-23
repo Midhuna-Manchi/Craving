@@ -1,0 +1,11 @@
+.logo{
+  text-align: left;
+}
+.logo a{
+  font-family: 'Dancing Script';
+  font-style: italic;
+  font-size: 75px;
+  padding:10 0;
+  text-decoration:none;
+  color:#E00B05;
+}

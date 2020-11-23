@@ -1,0 +1,29 @@
+.titlebar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+.bar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding:12px;
+  font-size:23px;
+  font-weight: 640;
+  text-decoration: none;
+  color: #FDFEFE;
+}
+.checkout {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.checkoutComponent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin : 0;
+  font-size: small;
+  vertical-align: center;
+}

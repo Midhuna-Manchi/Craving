@@ -1,0 +1,47 @@
+.rowPost {
+  display: flex;
+  height:50vw;
+  }
+
+main{
+  overflow: auto;
+  flex:50%;
+  padding : 20px ;
+  background-color: #ffffff;
+  }
+
+h1{
+text-align: center;
+margin:0;
+font-weight: bold;
+}
+
+.images{
+  width:100%;
+  height:30%;
+}
+
+#dateblog{
+  font-size:14px;
+  font-style: italic;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: 400;
+  color:#707B7C;
+}
+
+.blogText{
+display:block;
+font-size:15px;
+padding:10px;
+font-weight: 400;
+
+}
+
+@media (max-width: 600px) {
+  .rowPost {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    }
+  }

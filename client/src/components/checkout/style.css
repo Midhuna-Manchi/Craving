@@ -1,0 +1,94 @@
+.row_c {
+  display: flex;
+    }
+
+main {
+  overflow: auto;
+  flex:65%;
+  padding :10px;
+  background-color: #ffffff;
+    }
+
+.imageicon_c {
+  width:40%;
+  height: 40%;
+  display: flex;
+}
+
+.posttitle_c{
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  font-weight: normal;
+  font-size: 70%;
+  margin-top: 5%;
+}
+
+.postedby_c{
+  display: block;
+  font-size: 14px;
+  text-align:right;
+  font-style: italic;
+  font-weight:400;
+  color:#707B7C;
+  margin-top: 1%;
+}
+
+.firstblock_c{
+  height: 40%;
+  width: 18%;
+  margin: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-style: dashed;
+  width: 90%;
+}
+
+.flexbox-container_c {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-style: dashed;
+}
+
+.orderButton_c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: black;
+  border-radius: 50%;
+  margin-top:20%;
+}
+
+.item_orders_c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-top: 3%;
+  justify-content: center;
+}
+
+.quantity_c {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 40%;
+  justify-content: center;
+}
+
+
+@media (max-width: 300px) {
+  .row_c {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    }
+  }
+
+  @media (max-height: 300px) {
+    .row_c {
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      }
+    }
