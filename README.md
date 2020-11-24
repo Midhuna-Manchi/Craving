@@ -1,1 +1,3 @@
-# Craving
+# Craving!
+
+Craving is a Web Application that will provide users with a user-friendly interface that will allow them to browse the variety of products and create the custom box containing different variety items from three major categories of products such as smoothies, Oats, and breakfast bowls. Users will be provided with 5 different versions of subscription plans that will allow them to customize the number of items received with each order. The application will also allow users to customize the products offerings filtering out the products they dislike based on the ingredients. The application will also offer the ability to create the list of favorite products, rate the products and leave the reviews for the products.
