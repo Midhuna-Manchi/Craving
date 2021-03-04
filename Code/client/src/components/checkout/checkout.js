@@ -5,9 +5,11 @@ import {NavLink} from 'react-router-dom';
 import { TouchableOpacity } from 'react-native';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import { useHistory } from 'react-router-dom';
 
 function Checkout(props)
 {
+   const history = useHistory();
   return (
     <div className="row_c">
       <Nav />
@@ -31,6 +33,9 @@ function Checkout(props)
                   );
           })
         }
+        <div className="login_button">
+        <input width="50%" type="button" value='Proceed to Checkout' onClick={() => {history.push('/paymentInfo')}}/>
+        </div>
         </div>
       </main>
     </div>

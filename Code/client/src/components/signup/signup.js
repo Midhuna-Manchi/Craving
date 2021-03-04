@@ -30,7 +30,7 @@ function Signup(props) {
   return (
 	<div className="outermost">
 		<div className="intro_panel">
-			
+
 		</div>
         <img className="homeimg" src={require('../../Images/Home_image.png')} alt="Food" />
 		<div className="login_panel">

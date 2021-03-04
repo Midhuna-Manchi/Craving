@@ -151,10 +151,10 @@ app.post('/users/signup', function (req, res) {
   		else
   		{
   			// return 401 status if signup not successful
-        console.log('User ' + firstname + ' sign-up successful.');
+        console.log('User ' + firstname + ' sign-up failed.');
   			return res.status(401).json({
   			error: true,
-  			message: 'error connecting: ' + err.stack
+  			message: 'error connecting: ' + error.stack
   			});
   		}
   	});
@@ -288,4 +288,113 @@ app.get('/subs_plans', function (req, res) {
         message: "Something went wrong in subscription plans retrieval."
       });
 	});
+});
+
+// Display Account Info
+app.post('/users/accountInfo', function (req, res) {
+  var user = req.body.userId;
+  console.log("AccountInfo required for " + user);
+  connection.query('SELECT firstname, lastname, address, username, password FROM users WHERE UserId = ?', [user], function(error, results, fields)
+	{
+			if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " account info from users.");
+  			return res.json({ acct_info : results });
+			}
+			else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	// return 400 status if username/password is not exist
+    return res.status(401).json({
+      error: true,
+      message: "Something went wrong in accountinfo withdrawl."
+    });
+  });
+});
+
+//Inserting into payment information
+
+// PaymentInfo of the user
+app.post('/users/paymentInfo', function (req, res) {
+  var userId = req.body.userId;
+  const name = req.body.name;
+  const cardNo = req.body.cardNo;
+  const expiryDt = req.body.expiryDt;
+  const securityCd = req.body.securityCd;
+  const streetadd = req.body.streetadd;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zipCd = req.body.zipCd;
+  const country = req.body.country;
+
+  connection.query('INSERT INTO payment( userId, name, cardNo, expiryDt, securityCd, streetadd, city, state, zipCd, country) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,?);', [userId, name, cardNo, expiryDt, securityCd, streetadd, city, state, zipCd, country], function(error, results, fields)
+  	{
+      if (!error)
+      {
+        console.log('User ' + name + ' Payment details entered successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + name + ' Payment details entered successfully.'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + name + ' Payment details failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "Cardno , securityCd are required"
+    });
+  });
+});
+
+
+app.post('/updateaccountInfo', function (req, res) {
+  var userId = req.body.userId;
+  var firstname = req.body.firstname;
+  var lastname = req.body.lastname;
+  var address = req.body.address;
+  var username = req.body.username;
+  var pwd = req.body.password;
+
+  console.log(firstname+"|"+lastname+"|"+address+"|"+username+"|"+pwd);
+
+    connection.query('UPDATE users set FirstName=?, LastName=?, Address=?, Username=?, Password=? WHERE UserId=?;', [firstname, lastname, address, username, pwd, userId], function(error, results, fields)
+    {
+      if (!error)
+      {
+        console.log('User ' + firstname + ' account details updated successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + firstname + ' account details updated successfully.'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + firstname + ' update failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "all the fields required"
+    });
+  });
 });

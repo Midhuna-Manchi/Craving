@@ -16,7 +16,7 @@ function Login(props) {
       setError(null);
       setLoading(true);
       axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
-        console.log('Received data from server as ' + JSON.stringify(response.data.user));
+        //console.log('Received data from server as ' + JSON.stringify(response.data.user));
         setLoading(false);
         setUserSession(response.data.token, response.data.user);
         props.setUser(response.data.user);

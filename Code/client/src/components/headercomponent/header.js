@@ -12,7 +12,7 @@ function Header(props)
       <header>
       <div className="flexbox">
       <Logo/>
-      <Titlebar menu_items={props.menu_items} userId={props.userId} userFirstName={props.userFirstName} subsCount={props.subsCount} itemsCount={props.itemsCount}/>
+      <Titlebar history={props.history} menu_items={props.menu_items} userId={props.userId} userFirstName={props.userFirstName} subsCount={props.subsCount} itemsCount={props.itemsCount} setaccountInfo={props.setaccountInfo}/>
       </div>
       </header>
       <Border/>
