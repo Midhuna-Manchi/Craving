@@ -40,10 +40,10 @@ function AccountInfo(props){
 
   const setAcctParameter = e => {
                                   setValidationerr([{
-                                      err_firstname: (e.target.id=="firstname"?(e.target.value==""?"** firstname cannot be blank":""): validationerr[0].err_firstname),
-                                      err_lastname : (e.target.id=="lastname"?(e.target.value==""?"** lastname cannot be blank":""): validationerr[0].err_lastname),
+                                      err_firstname: (e.target.id=="firstname"?(e.target.value==""?"** firstname cannot be null":""): validationerr[0].err_firstname),
+                                      err_lastname : (e.target.id=="lastname"?(e.target.value==""?"** lastname cannot be null":""): validationerr[0].err_lastname),
                                       err_address  : (e.target.id=="address"?((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$/.test(e.target.value))?"":"** Please enter a valid e-mail"): validationerr[0].err_address),
-                                      err_username : (e.target.id=="username"?(e.target.value==""?"** username cannot be blank":""): validationerr[0].err_username),
+                                      err_username : (e.target.id=="username"?(e.target.value==""?"** username cannot be null":""): validationerr[0].err_username),
                                       err_password : (e.target.id=="password"?(e.target.value.length < 6?"** password must be alteast 6 characters long":""): validationerr[0].err_password)
 
                                   }]);
@@ -95,7 +95,7 @@ function AccountInfo(props){
     <div className="link">
     <NavLink className="home1" to="/accountInfo">Account Info</NavLink>
     <NavLink className="home" to="/paymentInfo">Payment details</NavLink>
-    <NavLink className="home" to="/home">Delivery Address</NavLink>
+    <NavLink className="home" to="/delivery">Delivery Address</NavLink>
     </div>
     </nav>
     <main>

@@ -10,6 +10,9 @@ import Checkout from './components/checkout/checkout';
 import RestoreCreds from './components/restoreCreds/restoreCredsInput';
 import AccountInfo from './components/accountinfo/accountInfo';
 import PaymentInfo from './components/paymentInfo/paymentInfo';
+import Delivery from './components/delivery/delivery';
+import PaymentProcessing from './components/paymentprocessing/paymentprocessing';
+
 import './App.css';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import axios from 'axios';
@@ -31,7 +34,8 @@ class App extends React.Component
       message : [],
       error : null,
       dateYMD : null,
-      selectedPlanId : null
+      selectedPlanId : null,
+      selectedPlanPrice : null
     };
     this.fetchMenuItem = this.fetchMenuItem.bind(this);
   }
@@ -55,8 +59,11 @@ class App extends React.Component
   }
 
   setPlanId = (props) => {
-    console.log("Setting plan ID to " + JSON.stringify(props));
     this.setState({selectedPlanId:props});
+  }
+
+  setPlanPrice = (props) => {
+    this.setState({selectedPlanPrice:props});
   }
 
   setaccountInfo = (props) => {
@@ -65,10 +72,6 @@ class App extends React.Component
 
   setError = (props) => {
     this.setState({error:props});
-  }
-
-  setdateYMD = (props) => {
-    this.setdateYMD({dateYMD:props});
   }
 
 fetchMenuItem = () => {
@@ -145,13 +148,15 @@ fetchMenuItem = () => {
         <Route path="/login" exact render={(props) => (<Login {...props} setUser={this.setUser} />)} />
         <Route path="/signup" exact component={Signup}/>
   			<Route path="/home" exact render={(props) => (<Home menu_items={this.state.menu_items} message={this.state.message} incrementItemCount={this.incrementItemCount} decrementItemCount={this.decrementItemCount}/>)}/>
-        <Route path="/subPlans" render={(props) => (<SubsPlans {...props} setSubsCount={this.setSubsCount} setMessage={this.setMessage} subsCount={this.state.subsCount} itemsCount={this.state.itemsCount} selectedPlanId={this.state.selectedPlanId} setPlanId={this.setPlanId}/>)}/>
+        <Route path="/subPlans" render={(props) => (<SubsPlans {...props} setSubsCount={this.setSubsCount} setMessage={this.setMessage} subsCount={this.state.subsCount} itemsCount={this.state.itemsCount} selectedPlanId={this.state.selectedPlanId} setPlanId={this.setPlanId} selectedPlanPrice={this.state.selectedPlanPrice} setPlanPrice={this.setPlanPrice}/>)}/>
   			<Route path="/post/:postId" exact component={Post}/>
-        <Route path="/checkout" exact render={(props) => (<Checkout menu_items={this.state.menu_items}/>)}/>
+        <Route path="/checkout" exact render={(props) => (<Checkout menu_items={this.state.menu_items} userId={this.state.userId} itemsCount={this.state.itemsCount} selectedPlanPrice={this.state.selectedPlanPrice}/>)}/>
         <Route path="/restoreCreds" exact render={(props) => (<RestoreCreds {...props}/>)} />
+        <Route path="/paymentprocessing" exact render={(props) => (<PaymentProcessing {...props}/>)} />
         <Route path="/accountInfo" exact render={(props) => (<AccountInfo {...props} userId={this.state.userId}/>)} />
-        <Route path="/paymentInfo" exact render={(props) => (<PaymentInfo {...props} userId={this.state.userId} userFirstName={this.state.firstName} dateYMD={this.state.dateYMD}/>)} />
-  		</Switch>
+        <Route path="/paymentInfo" exact render={(props) => (<PaymentInfo {...props} userId={this.state.userId} userFirstName={this.state.firstName}/>)} />
+        <Route path="/delivery" exact render={(props) => (<Delivery {...props} userId={this.state.userId} userFirstName={this.state.firstName} />)} />
+      </Switch>
   		<Footer />
       </Router>
     );

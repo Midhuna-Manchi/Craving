@@ -34,10 +34,11 @@ function SubsPlans(props)
     });
  }
 
- function handlePlanSelect(planId, planSize)
+ function handlePlanSelect(planId, planSize, planPrice)
  {
    props.setPlanId(planId);
    props.setSubsCount(planSize);
+   props.setPlanPrice(planPrice);
    props.setMessage([]);
    props.history.push('/home');
  }
@@ -57,7 +58,7 @@ function SubsPlans(props)
         {
           weekly_subs_plans.map(plan => {
               return(
-                  <TouchableOpacity onPress={() => handlePlanSelect(plan.PlanId, plan.PlanSize)} disabled={props.itemsCount > plan.PlanSize}>
+                  <TouchableOpacity onPress={() => handlePlanSelect(plan.PlanId, plan.PlanSize, plan.PlanPrice)} disabled={props.itemsCount > plan.PlanSize}>
                     <div className="subsPlanblock">
                     <div className="subsPlanDescBlock" style={{opacity: 1.2 - Math.floor(props.itemsCount>plan.PlanSize)}}>
                       <div className="planName">{plan.PlanName}</div>
@@ -85,7 +86,7 @@ function SubsPlans(props)
         {
           monthly_subs_plans.map(plan => {
               return(
-                <TouchableOpacity onPress={() => handlePlanSelect(plan.PlanId, plan.PlanSize)} disabled={props.itemsCount > plan.PlanSize}>
+                <TouchableOpacity onPress={() => handlePlanSelect(plan.PlanId, plan.PlanSize, plan.PlanPrice)} disabled={props.itemsCount > plan.PlanSize}>
                   <div className="subsPlanblock">
                   <div className="subsPlanDescBlock" style={{opacity: 1.2 - Math.floor(props.itemsCount>plan.PlanSize)}}>
                     <div className="planName">{plan.PlanName}</div>

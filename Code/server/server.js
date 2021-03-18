@@ -398,3 +398,92 @@ app.post('/updateaccountInfo', function (req, res) {
     });
   });
 });
+
+app.post('/users/delivery', function (req, res) {
+  var userId = req.body.userId;
+  const name = req.body.name;
+  const streetadd = req.body.streetadd;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zipCd = req.body.zipCd;
+  const country = req.body.country;
+
+  connection.query('INSERT INTO delivery( userId, name, streetadd, city, state, zipCd, country) VALUES (? ,? ,? ,? ,? ,? ,?);', [userId, name, streetadd, city, state, zipCd, country], function(error, results, fields)
+  	{
+      if (!error)
+      {
+        console.log('User ' + name + ' delivery details entered successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + name + ' delivery details entered successfully.'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + name + ' delivery details failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "delivery details are required"
+    });
+  });
+});
+
+app.post('/delivery_info', function (req, res) {
+  var userId = req.body.userId;
+
+  connection.query('SELECT name, streetadd, city, state, zipCd, country FROM Delivery where userId=?;', [userId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " delivery info from Delivery.");
+  			return res.json({ delivery_info : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in delivery_info withdrawl."
+     });
+  });
+});
+
+app.post('/paymentDetails', function (req, res) {
+  var userId = req.body.userId;
+
+  connection.query('SELECT name, cardNo, expiryDt, securityCd, streetadd, city, state, zipCd, country FROM Payment where userId=?;', [userId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " details from payment.");
+  			return res.json({ payment_details : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in payment_details withdrawl."
+     });
+  });
+});

@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { setUserSession } from '../../Utils/Common';
 import './style.css';
-import Login from '../../components/login/login';
 import {NavLink} from 'react-router-dom';
 
 
-function PaymentInfo(props) {
+function Delivery(props) {
         const [error, setError] = useState(null);
         const name = useFormInput('Name on the card', '', setError);
-        const cardNo = useFormInput('Card Number', '', setError);
-        const expiryDt = useFormInput('Expiration Date', '', setError);
-        const securityCd = useFormInput('Security Code', '', setError);
         const streetadd = useFormInput('Street address', '', setError);
         const city = useFormInput('City', '', setError);
         const state = useFormInput('State', '', setError);
@@ -19,9 +15,9 @@ function PaymentInfo(props) {
         const country = useFormInput('Country', '', setError);
 
 
-const handlePayment = () => {
+const handleDelivery = () => {
         setError(null);
-        axios.post('http://localhost:4000/users/paymentInfo', { userId: props.userId, name: name.value, cardNo: cardNo.value, expiryDt: expiryDt.value, securityCd: securityCd.value, streetadd: streetadd.value, city: city.value, state: state.value, zipCd: zipCd.value, country: country.value}).then(response => {
+        axios.post('http://localhost:4000/users/delivery', { userId: props.userId, name: name.value, streetadd: streetadd.value, city: city.value, state: state.value, zipCd: zipCd.value, country: country.value}).then(response => {
         }).catch(error => {
             if (error.response.status === 401)
             setError(error.response.data.message);
@@ -35,37 +31,20 @@ return(
    <nav className="navbar">
    <div className="link">
    <NavLink className="home" to="/accountInfo">Account Info</NavLink>
-   <NavLink className="home1" to="/paymentInfo">Payment details</NavLink>
-   <NavLink className="home" to="/delivery">Delivery Address</NavLink>
+   <NavLink className="home" to="/paymentInfo">Payment details</NavLink>
+   <NavLink className="home1" to="/delivery">Delivery Address</NavLink>
    </div>
    </nav>
    <main>
-    <h2 className="fname">Hi,{props.userFirstName}!</h2>
+    <h3 className="fname">Hi,{props.userFirstName}! </h3>
     <div className="table_column">
+    <h4>Where are we delivering to? </h4>
     <br/>
       <div className="table_row">
-         		<label htmlFor="name"> Name on the card </label>
+         		<label htmlFor="name"> Name </label>
  			      <input className="pinput" type="text" id="name" {...name} ></input>
 	    </div>
       <p class="validationMessage_acctinfo">{name.err_msg}</p>
-      <br/>
-      <div className="table_row">
-            <label htmlFor="cardNo">Card Number</label>
-            <input className="pinput" type="number" id="cardNo" {...cardNo}></input>
-      </div>
-      <p class="validationMessage_acctinfo">{cardNo.err_msg}</p>
-      <br/>
-      <div className="table_row">
-            <label htmlFor="expiry">Expiration Date</label>
-            <input className="pinput" type="text" placeholder="MM/YYYY" id="expiry" {...expiryDt} ></input>
- 			</div>
-      <p class="validationMessage_acctinfo">{expiryDt.err_msg}</p>
-      <br/>
-      <div className="table_row">
-            <label htmlFor="Security">Security Code</label>
-            <input className="pinput" type="number" pattern="[0-9]*" id="security" {...securityCd}></input>
- 			</div>
-      <p class="validationMessage_acctinfo">{securityCd.err_msg}</p>
       <br/>
       <div className="table_row">
             <label htmlFor="add">Street address</label>
@@ -98,12 +77,12 @@ return(
       <p class="validationMessage_acctinfo">{country.err_msg}</p>
       <br/>
       <div className="table_row">
-      <img className="imageicon1" src={require('../../Images/visacard.png')} alt="Cards" />
+
       </div>
       <div className="table_row">
  			<div className="login_button">
           <p class="validationMessage_acctinfo">{error}</p>
- 				  <input type="button" value='Save' onClick={handlePayment} />
+ 				  <input type="button" value='Use this address' onClick={handleDelivery} />
  			</div>
       </div>
   </div>
@@ -177,4 +156,4 @@ const useFormInput = (fieldName, initialValue, setError) => {
   }
 }
 
-export default PaymentInfo;
+export default Delivery;
