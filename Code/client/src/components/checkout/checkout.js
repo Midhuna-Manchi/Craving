@@ -75,14 +75,14 @@ function Checkout(props)
           deliveryInfo.map(item=>{
             return(
               <div>
-              <h3>Delivery Address:</h3>
+              <h3>Delivery Address</h3>
               <table>
               <tr>
-              <td>Name :</td>
+              <th>Name :</th>
               <td>{item.name}</td>
               </tr>
               <tr>
-              <td>Address : </td>
+              <th rowspan="2">Address : </th>
               <td>{item.streetadd}, {item.city}, </td>
               </tr>
               <tr>
@@ -99,22 +99,22 @@ function Checkout(props)
           paymentDetails.map(item=>{
             return(
               <div>
-              <h3>Payment Details:</h3>
+              <h3> Payment Details </h3>
               <table>
               <tr>
-              <td>Name : </td>
+              <th> Name : </th>
               <td> {item.name}</td>
               </tr>
               <tr>
-              <td>Card No : </td>
+              <th>Card No : </th>
               <td>{item.cardNo.toString().replace(/\d(?=\d{4})/g, "*")}</td>
               </tr>
               <tr>
-              <td>Expiry Date : </td>
+              <th>Expiry Date : </th>
               <td>{item.expiryDt}</td>
               </tr>
               <tr>
-              <td>Billing Address : </td>
+              <th rowspan="2"> Billing Address : </th>
               <td>{item.streetadd}, {item.city}, </td>
               </tr>
               <tr>
@@ -128,19 +128,26 @@ function Checkout(props)
         </div>
         </div>
         <div className="ItemQuantity">
-        <div className = "ItemDetails">
+        <div className="ItemDetails">
         <table>
         <tr>
-        <td><b>No of Items added to the cart : </b></td>
+        <b>Order Summary:</b>
+        </tr>
+        <tr>
+        <td>No of Items :</td>
         <td>{props.itemsCount}</td>
         </tr>
         <tr>
-        <td><b>Tax : </b></td>
-        <td> $0 </td>
+        <td>Estimated tax to be collected : </td>
+        <td> ${0.05 * props.selectedPlanPrice} </td>
         </tr>
         <tr>
-        <td><b>Payment Due : </b></td>
+        <td>Total before tax : </td>
         <td> ${props.selectedPlanPrice} </td>
+        </tr>
+        <tr>
+        <td style={{color:"red"}}><b> Order total: </b></td>
+        <td> ${(0.052 * props.selectedPlanPrice) + props.selectedPlanPrice } </td>
         </tr>
         </table>
         </div>
