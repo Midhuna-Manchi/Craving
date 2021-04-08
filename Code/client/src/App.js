@@ -12,6 +12,9 @@ import AccountInfo from './components/accountinfo/accountInfo';
 import PaymentInfo from './components/paymentInfo/paymentInfo';
 import Delivery from './components/delivery/delivery';
 import PaymentProcessing from './components/paymentprocessing/paymentprocessing';
+import SubmitTicket from './components/submitticket/submitticket';
+import TicketHistory from './components/history/tickethistory';
+import TeamInfo from './components/teaminfo/teaminfo';
 
 import './App.css';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
@@ -29,6 +32,7 @@ class App extends React.Component
       accountInfo: [],
       userId  : '',
       firstName : '',
+      address  : '',
       subsCount : 0,
       itemsCount : 0,
       message : [],
@@ -56,6 +60,7 @@ class App extends React.Component
     console.log("Setting value of user to " + JSON.stringify(props));
     this.setState({userId:props.userId});
     this.setState({firstName:props.firstName});
+    this.setState({address:props.address});
   }
 
   setPlanId = (props) => {
@@ -156,6 +161,9 @@ fetchMenuItem = () => {
         <Route path="/accountInfo" exact render={(props) => (<AccountInfo {...props} userId={this.state.userId}/>)} />
         <Route path="/paymentInfo" exact render={(props) => (<PaymentInfo {...props} userId={this.state.userId} userFirstName={this.state.firstName}/>)} />
         <Route path="/delivery" exact render={(props) => (<Delivery {...props} userId={this.state.userId} userFirstName={this.state.firstName} />)} />
+        <Route path="/submitticket" exact render={(props) => (<SubmitTicket {...props} userId={this.state.userId} userFirstName={this.state.firstName} userAddress={this.state.address}/>)} />
+        <Route path="/tickethistory" exact render={(props) => (<TicketHistory {...props} userId={this.state.userId} userFirstName={this.state.firstName} />)} />
+        <Route path="/teaminfo" exact render={(props) => (<TeamInfo {...props} userId={this.state.userId} userFirstName={this.state.firstName} />)} />
       </Switch>
   		<Footer />
       </Router>

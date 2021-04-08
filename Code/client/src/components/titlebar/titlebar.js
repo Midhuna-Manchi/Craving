@@ -57,8 +57,8 @@ function Titlebar(props)
                 </NavLink>
                 <NavLink className="bar" to="/subPlans"><PlaylistAddIcon fontSize="large" className="checkoutComponent"/></NavLink>
                 <NavLink className="bar" to="/home"><HomeIcon fontSize="large" className="checkoutComponent"/></NavLink>
-                <NavLink className="bar" to="/home"><InfoIcon fontSize="large" className="checkoutComponent"/></NavLink>
-                <NavLink className="bar" to="/home"><HelpIcon fontSize="large" className="checkoutComponent"/></NavLink>
+                <NavLink className="bar" to="/teaminfo"><InfoIcon fontSize="large" className="checkoutComponent"/></NavLink>
+                <NavLink className="bar" to="/submitticket"><HelpIcon fontSize="large" className="checkoutComponent"/></NavLink>
                 <NavLink className="bar" to="/accountInfo">
                   <div className="checkout">
                     <AccountCircleIcon fontSize="small" className="checkoutComponent" onClick={() => fetchaccountInfo()} />

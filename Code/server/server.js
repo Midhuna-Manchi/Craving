@@ -487,3 +487,129 @@ app.post('/paymentDetails', function (req, res) {
      });
   });
 });
+
+app.post('/users/ticket', function (req, res) {
+  var userId = req.body.userId;
+  var name = req.body.name;
+  var email = req.body.email;
+  var reason = req.body.reason;
+  var comments = req.body.comments;
+
+  console.log(userId, name, email, reason, comments)
+
+  connection.query('INSERT INTO ticket (userId, name, email, reason, comments) VALUES (? ,? ,? ,? ,?);', [userId, name, email, reason, comments], function(error, results, fields)
+  	{
+      if (!error)
+      {
+        console.log('User ' + name + 'Bug reported successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + name + 'Bug reported successfully'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + name + ' Ticket entering details failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "Ticket details are required"
+    });
+  });
+});
+
+app.post('/ticket_info', function (req, res) {
+  var userId = req.body.userId;
+
+  connection.query('SELECT comments FROM Ticket where userId=?;', [userId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " ticket info from Ticket.");
+  			return res.json({ ticketInfo : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in ticket_info withdrawl."
+     });
+  });
+});
+
+app.post('/users/getTicketEmail', function (req, res) {
+  var userId = req.body.userId;
+  	connection.query('SELECT ticketId, name, email, comments from ticket WHERE userId = ?;', [userId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+      {
+        if (!error)
+        {
+            var transporter = nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                user: 'midhu.sailu@gmail.com',
+                pass: 'Mallika!1'
+              }
+            });
+            var mailOptions = {
+              from: 'midhu.sailu@gmail.com',
+              to: results[0].email,
+              subject: 'Ticket has been submitted from Cravings',
+              text: 'Dear Customer ' +  ',\n\nYour ticket #S02-10010 has been submitted successfully  ' + ".\n\nThanks & Regards,\nCravings Team"
+            }
+
+            transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              return res.json({
+                value : results,
+          			error: false,
+          			message: 'Ticket submitted successfully! Please check your e-mail \'' + results[0].email + '\' for further instructions.'
+        			});
+            }
+          });
+          console.log('Ticket submitted successfully.');
+    		}
+    		else
+    		{
+    			// return 401 status if signup not successful
+          console.log('Ticket submittion email failed');
+    			return res.status(401).json({
+    			error: true,
+    			message: 'error connecting: ' + error.stack
+    			});
+    		}
+      }
+      else
+    	{
+    		// return 400 status if username/password is incorrect
+    		return res.status(401).json({
+    		error: true,
+    		message: "UserId is incorrect."
+    		});
+    	}
+  	});
+
+   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "UserId is required."
+    });
+
+});

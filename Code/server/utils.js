@@ -11,6 +11,7 @@ function generateToken(user) {
     userId: user.UserId,
     name: user.Name,
     username: user.username,
+    address : user.address,
     isAdmin: user.isAdmin
   };
 
@@ -26,6 +27,7 @@ function getCleanUser(user) {
   return {
     userId: user.UserId,
     firstName: user.FirstName,
+    address : user.Address,
     isAdmin: user.isAdmin
   };
 }

@@ -1,0 +1,8 @@
+.ticket{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: left;
+  background-color: #EBF5FB ;
+  border-radius: 15px;
+}
