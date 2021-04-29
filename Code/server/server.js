@@ -242,7 +242,7 @@ app.listen(port, () => {
 
 // return the list of menu items
 app.get('/menu', function (req, res) {
-	connection.query('SELECT id, SmoothiesTitle, SmoothiesName, SmoothiesImage, Description, Calories, Price FROM menu', [], function(error, results, fields)
+	connection.query('SELECT id, SmoothiesTitle, SmoothiesName, SmoothiesImage, Description, Calories, Price, ingredients FROM menu', [], function(error, results, fields)
 	{
 		if (results.length > 0)
 		{
@@ -612,4 +612,147 @@ app.post('/users/getTicketEmail', function (req, res) {
       message: "UserId is required."
     });
 
+});
+
+app.post('/users/review', function (req, res) {
+  var userId = req.body.userId;
+  var id = req.body.id;
+  var review = req.body.review;
+
+  connection.query('INSERT INTO review (userId, id, review) VALUES (? ,? ,?);', [userId, id, review], function(error, results, fields)
+  	{
+      if (!error)
+      {
+        console.log('User ' + userId + 'review entered successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + userId + 'review entered successfully'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + userId + ' review entering failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "Review details are required"
+    });
+  });
+});
+
+app.post('/review_info', function (req, res) {
+    var id = req.body.id;
+  connection.query('Select review, firstName from review r join users u join menu m on u.userId=r.userId and r.id=m.id and r.id=?;',[id], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " review info from review.");
+  			return res.json({ reviewInfo : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in review_info withdrawl."
+     });
+  });
+});
+
+app.post('/users/orders', function (req, res) {
+  var userId = req.body.userId;
+  var ordersDate = req.body.ordersDate;
+  var status = req.body.status;
+  var total = req.body.total;
+
+  connection.query('INSERT INTO orders (userId, ordersDate, status, total) VALUES (? ,? ,? ,?);', [userId, ordersDate, status, total], function(error, results, fields)
+  	{
+      if (!error)
+      {
+        console.log('User ' + userId + 'orders entered successfully.');
+        return res.json({
+    			error: false,
+    			message: 'User ' + userId + 'orders entered successfully'
+  			});
+  		}
+  		else
+  		{
+  			// return 401 status if signup not successful
+        console.log('User ' + userId + ' orders entering failed.');
+  			return res.status(401).json({
+  			error: true,
+  			message: 'error connecting: ' + error.stack
+  			});
+  		}
+
+	   // return 400 status if username/password is not exist
+     return res.status(400).json({
+      error: true,
+      message: "orders details are required"
+    });
+  });
+});
+
+app.post('/orders_info', function (req, res) {
+    var userId = req.body.userId;
+  connection.query('Select * from orders where userId=?;',[userId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " order info from review.");
+  			return res.json({ orderInfo : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in order_info withdrawl."
+     });
+  });
+});
+
+app.post('/orders_delete', function (req, res) {
+    var userId = req.body.userId;
+    var ordersId = req.body.ordersId;
+  connection.query('Delete from orders where userId=? and ordersId=?;',[userId,ordersId], function(error, results, fields)
+  	{
+      if (results.length > 0)
+			{
+        console.log("Fetched " + results.length + " order info from review.");
+  			return res.json({ orderInfo : results });
+			}
+      else
+			{
+				// return 400 status if username/password is incorrect
+				return res.status(400).json({
+				error: true,
+				message: "Incorrect UserId."
+				});
+			}
+	   // return 400 status if username/password is not exist
+     return res.status(401).json({
+       error: true,
+       message: "Something went wrong in order_delete withdrawl."
+     });
+  });
 });

@@ -33,6 +33,7 @@ return(
    <NavLink className="home" to="/accountInfo">Account Info</NavLink>
    <NavLink className="home" to="/paymentInfo">Payment details</NavLink>
    <NavLink className="home1" to="/delivery">Delivery Address</NavLink>
+   <NavLink className="home" to="/orders">Order Cancel/history</NavLink>
    </div>
    </nav>
    <main>

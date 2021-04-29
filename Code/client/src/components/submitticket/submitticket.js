@@ -45,7 +45,7 @@ function SubmitTicket(props) {
 
 const handleTickets = () => {
         setError(null);
-        alert("Your ticket submitted successfully! Confirmation has sent to your email address.")
+        alert("Your ticket submitted successfully! Confirmation has sent to your email address.");
         console.log(props.userId, props.userFirstName, props.userAddress, value, comments.value);
         console.log("This is for insert statement" + value);
         axios.post('http://localhost:4000/users/ticket', { userId: props.userId, name: props.userFirstName, email: props.userAddress, reason: value, comments: comments.value}).then(response => {

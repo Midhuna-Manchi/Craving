@@ -34,33 +34,33 @@ return(
    </div>
    </nav>
    <main>
-      <div className="table_row1">
+      <div className="table_row2">
 
-      <div className="table_column1">
+      <div className="table_column2">
       <h3> Ticket ID </h3>
       <p> S01-36492 </p>
       <p> S01-36493 </p>
       </div>
 
-      <div className="table_column1">
+      <div className="table_column2">
       <h3> Date Submitted </h3>
       <p> 03/09/2021 </p>
       <p> 04/01/2021 </p>
  			</div>
 
-      <div className="table_column1">
+      <div className="table_column2">
       <h3> Date Resolved </h3>
       <p> 03/13/2021 </p>
       <p> 04/06/2021 </p>
  			</div>
 
-      <div className="table_column1">
+      <div className="table_column2">
       <h3> Status </h3>
       <p>Open</p>
       <p>Closed</p>
       </div>
 
-      <div className="table_column1">
+      <div className="table_column2">
       <h3> Details </h3>
       <Popup trigger={<li><a className="popuplink" onClick={handleComments}>Info</a></li>} position="right center">
       <div>

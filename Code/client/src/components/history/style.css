@@ -1,11 +1,12 @@
-.table_column1{
+.table_column2{
   display:flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
-  width : 20%;
+  width:20%;
 }
-.table_row1{
+
+.table_row2{
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;

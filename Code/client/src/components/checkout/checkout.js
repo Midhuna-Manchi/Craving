@@ -15,6 +15,20 @@ function Checkout(props)
   const [deliveryInfo, setDeliveryInfo] = useState([]);
   const [paymentDetails, setPaymentDetails] = useState([]);
   const history = useHistory();
+  const [ttl, setTtl] = useState(props.selectedPlanPrice);
+  const [ordDate, setOrdDate] = useState(new Date().toLocaleString());
+
+  const handleOrders = () => {
+            setError(null);
+            alert("Order submitted successfully");
+            axios.post('http://localhost:4000/users/orders', { userId: props.userId, ordersDate: ordDate, status:"pending", total:ttl}).then(response => {
+            }).catch(error => {
+                  if (error.response.status === 401)
+                  setError(error.response.data.message);
+                  else
+                  setError("Something went wrong. Please try again later.");
+                    });
+              }
 
   useEffect(() => {
     setError(null);
@@ -153,7 +167,7 @@ function Checkout(props)
         </div>
         </div>
         <div className="login_button">
-        <input width="50%" type="button" value='Place your Order' onClick={() => history.push('/paymentprocessing')}/>
+        <input width="50%" type="button" value='Place your Order' onClick={() => {handleOrders(); history.push('/paymentprocessing');}}/>
         </div>
         </div>
         </div>
