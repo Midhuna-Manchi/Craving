@@ -89,8 +89,8 @@ return(
             {
             orderInfo.map(item => {
             return(
-              <p>  ${item.total} </p>
-              );
+              <p> ${(0.052 * item.total) + (1*item.total)} </p>
+                );
             })
             }
             </div>

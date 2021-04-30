@@ -39,7 +39,7 @@ useEffect(() => {
       <br/>
       <br/>
       <br/>
-      <p><b><i>Order Number #CR12577</i></b></p>
+      <p><b><i>Order Number #CR12580</i></b></p>
       <p><i>Thank you for shopping with us!!</i></p>
       <p><i>Your order has been placed and its in processing stage.</i></p>
       <p><i>Will keep you posted with the latest status.</i></p>
